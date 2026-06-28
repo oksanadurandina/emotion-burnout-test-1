@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Тест на магический негатив и эмоциональное выгорание</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #f7eefc, #f3e6ff);
+  color: #2c1a3d;
+}
+
+/* ШАПКА */
+.header {
+  text-align: center;
+  padding: 25px 15px 10px;
+}
+
+.header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  margin: 0;
+  color: #3a1a5e;
+}
+
+.header p {
+  margin: 5px 0;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* КОНТЕЙНЕР */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* КАРТОЧКА */
+.card {
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ВОПРОС */
+#question {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* КНОПКИ */
+button {
+  padding: 12px 18px;
+  margin: 8px 5px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #b84dff;
+  color: white;
+}
+
+.no {
+  background: #4caf50;
+  color: white;
+}
+
+/* РЕЗУЛЬТАТ */
+#result {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* КНОПКА ССЫЛКИ */
+.link-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  background: #7b2cbf;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Оксана Дурандина</h1>
+  <p>Регрессолог</p>
+</div>
+
+<div class="container">
+  <div class="card">
+
+    <h2>Тест на магический негатив и эмоциональное выгорание</h2>
+
+    <div id="question"></div>
+
+    <div id="buttons">
+      <button class="yes" onclick="answer(true)">Да</button>
+      <button class="no" onclick="answer(false)">Нет</button>
+    </div>
+
+    <div id="result"></div>
+
+  </div>
+</div>
+
+<script>
+const questions = [
+  "1. Ты часто просыпаешься уставшей, даже если спала достаточно?",
+  "2. Есть ощущение, что кто-то словно высасывает твою энергию?",
+  "3. Бывают внезапные скачки настроения без причины?",
+  "4. Ты чувствуешь тревожность или страх без объяснения?",
+  "5. Стала замкнутой или не хочется общаться с людьми?",
+  "6. Появились бессонница или кошмары?",
+  "7. Ты часто сталкиваешься с мелкими поломками или потерями?",
+  "8. Чувствуешь, что тебе не везёт, всё идёт не так?",
+  "9. Медитации или практики не приносят облегчения, как раньше?",
+  "10. Иногда появляется чувство, что на тебе что-то чужое, тяжёлое?"
+];
+
+let current = 0;
+let yesCount = 0;
+
+function showQuestion() {
+  if (current < questions.length) {
+    document.getElementById("question").innerText = questions[current];
+  } else {
+    showResult();
+  }
+}
+
+function answer(val) {
+  if (val) yesCount++;
+  current++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("question").style.display = "none";
+  document.getElementById("buttons").style.display = "none";
+
+  let result = document.getElementById("result");
+
+  if (yesCount >= 4) {
+    result.innerHTML = `
+      <p>Похоже, у тебя признаки эмоционального выгорания или энергетического негатива.</p>
+      <p>Тебе может помочь справиться с этим состоянием моя бесплатная медитация на чистку от негатива.</p>
+
+      <a class="link-btn" href="https://t.me/oksanaregres_bot?start=c1758284974975-ds">
+        Медитация на чистку
+      </a>
+    `;
+  } else {
+    result.innerHTML = `
+      <p>Всё в порядке! Твоя энергетика в балансе.</p>
+
+      <p>Если ты хочешь получить послание от своей души и понять, на что сейчас важно обратить внимание, нажми на кнопку ниже.</p>
+
+      <a class="link-btn" href="https://t.me/oksanaregres_bot?start=c1757489530506-ds">
+        Подсказка от твоей души
+      </a>
+    `;
+  }
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
